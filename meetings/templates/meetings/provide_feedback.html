@@ -1,0 +1,10 @@
+<!-- templates/meetings/provide_feedback.html -->
+<h1>Provide Feedback</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Feedback</button>
+</form>
+
+<a href="{% url 'meetings:meeting_requests_list' %}">Back to Meeting Requests</a>

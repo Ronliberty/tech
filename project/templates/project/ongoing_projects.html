@@ -1,0 +1,27 @@
+<h1>Created Projects</h1>
+<ul>
+    {% for project in projects %}
+        <li>
+            <a href="{% url 'project:project-detail' pk=project.id %}">
+                {{ project.title }} - Created on: {{ project.created_at }}
+            </a>
+
+            <!-- Check if the project has any progress entries -->
+            {% if project.progress_entries.exists %}
+                <ul>
+                    {% for progress in project.progress_entries.all %}
+                        <li>
+                            <a href="{% url 'project:project-progress-update' pk=progress.pk %}">
+                                Edit {{ progress.progress_percentage }}% Progress
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No progress updates yet.</p>
+            {% endif %}
+        </li>
+    {% empty %}
+        <p>No projects created yet.</p>
+    {% endfor %}
+</ul>

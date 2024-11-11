@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+{% block content %}
+<a href="{% url 'dashboard:client_dashboard' %}" class="back-button"><i class='bx bx-arrow-back'></i></a>
+<h1 style="font-size: 24px; color: #333; text-align: center; margin-bottom: 20px;">{{ project.title }}Project History</h1>
+
+<h3 style="font-size: 20px; color: #555; margin-bottom: 15px;">Progress Updates</h3>
+{% if progress_entries %}
+    <ul style="list-style-type: none; padding: 0;">
+        {% for entry in progress_entries %}
+            <li style="margin-bottom: 15px; padding: 10px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 5px;">
+                <strong style="color: #333; font-weight: bold;">{{ entry.update_date }}:</strong>
+                <p style="margin: 5px 0; color: #666;">{{ entry.status_update }} ({{ entry.progress_percentage }}%)</p>
+                {% if entry.description %}
+                    <p style="font-style: italic; color: #888;"><em>{{ entry.description }}</em></p>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p style="color: #888; font-style: italic;">No progress updates available yet.</p>
+{% endif %}
+{% endblock%}

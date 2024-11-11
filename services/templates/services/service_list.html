@@ -1,0 +1,36 @@
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'services/css/styles.css' %}">
+</head>
+{% block content %}
+
+<a href="{% url 'dashboard:client_dashboard' %}" class="back-button"><i class='bx bx-arrow-back'></i></a>
+    <h1>Services</h1>
+    <div class="service-list">
+        {% for service in services %}
+            <div class="service-item">
+                <h2>{{ service.title }}</h2>
+                <p>{{ service.description }}</p>
+                <p><a href="{{ service.sample_website }}" target="_blank">{{ service.sample_website }}</a></p>
+                <p>Created by: {{ service.created_by.username }} on {{ service.created_at }}</p>
+
+
+
+                <div class="service-images">
+                    {% for image in service.images.all %}
+                        <img src="{{ image.image.url }}" alt="Image for {{ service.title }}" />
+                    {% empty %}
+                        <p>No images available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No services available.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

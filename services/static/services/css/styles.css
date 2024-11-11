@@ -1,0 +1,172 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    padding: 0 0;
+}
+
+/* Back Button */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.back-button i {
+    margin-right: 8px;
+}
+
+.back-button:hover {
+    color: #007bff;
+}
+
+/* Page Header */
+h1 {
+    text-align: center;
+    font-size: 2.5em;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+/* Service List */
+.service-list {
+
+}
+
+/* Service Item */
+.service-item {
+    width: 75vw;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    max-height: 600px; /* Adjust height as needed */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px blue;
+}
+
+.service-item h2 {
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    color: black;
+    text-align: center;
+
+}
+
+.service-item p {
+    margin-bottom: 8px;
+}
+
+.service-item p:nth-of-type(1) {
+    height: 200px; /* Adjust height as needed */
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: #333;
+}
+
+.service-item p:nth-of-type(2) {
+    height: 70px; /* Adjust this value to your desired height */
+    overflow-y: auto; /* Adds scroll if the content exceeds the set height */
+    padding: 10px;
+}
+
+.service-item p:nth-of-type(3) {
+    height: 70px; /* Adjust height as needed */
+    overflow-y: auto;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    color: green;
+    font-family: "Courier New", "Lucida Console", monospace;
+
+}
+
+.service-item a {
+    color: blue;
+    text-decoration: none;
+}
+
+.service-item a:hover {
+    text-decoration: underline;
+}
+
+/* Service Images */
+.service-images {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.service-images img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    width: 300px;
+    height: 300px;
+    transition: transform 0.3s ease;
+}
+
+.service-images img:hover {
+    transform: scale(1.05);
+}
+
+/* Empty State */
+.service-list p,
+.service-images p {
+    color: #888;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    .back-button {
+        font-size: 1em;
+    }
+
+    .service-item {
+        max-height: 600px; /* Adjust for mobile */
+    }
+
+    .service-item h2 {
+        font-size: 1.5em;
+    }
+
+    .service-images img {
+        width: 100%; /* Image takes full container width */
+        height: auto; /* Maintains aspect ratio */
+    }
+}
+
+@media (max-width: 600px) {
+    .service-images img {
+        width: 100%; /* Full container width for smaller devices */
+        height: auto;
+    }
+}

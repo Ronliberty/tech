@@ -1,0 +1,15 @@
+
+    <h2>Create New Service</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        
+        <h3>Upload Images</h3>
+        {{ image_formset.management_form }}
+        {% for form in image_formset %}
+            {{ form }}
+        {% endfor %}
+        
+        <button type="submit">Create Service</button>
+    </form>
+

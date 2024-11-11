@@ -1,0 +1,30 @@
+
+
+{% block content %}
+  <h2 style="text-align: center; font-size: 24px; color: #333; margin-bottom: 15px;">Request a Service</h2>
+  <form method="post" style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <a href="{% url 'dashboard:client_dashboard' %}" class="back-button"><i class='bx bx-arrow-back'></i></a>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary" style="width: 40%; padding: 10px; font-size: 1em; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit Request</button>
+  </form>
+
+<style>
+    /* Styles for the form fields to stack neatly on smaller screens */
+    form p {
+      margin-bottom: 15px;
+    }
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.5em;
+      }
+      form {
+        padding: 10px;
+      }
+      .btn {
+        font-size: 0.9em;
+        padding: 8px;
+      }
+    }
+  </style>
+{% endblock %}

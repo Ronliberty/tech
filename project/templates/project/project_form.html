@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Project</title>
+</head>
+<body>
+    <h1>Create a New Project</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Title -->
+        <div>
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <!-- Assigned To -->
+        <div>
+            <label for="{{ form.assigned_to.id_for_label }}">Assigned To:</label>
+            {{ form.assigned_to }}
+        </div>
+
+        <!-- Start Date -->
+        <div>
+            <label for="{{ form.start_date.id_for_label }}">Start Date:</label>
+            {{ form.start_date }}
+        </div>
+
+        <!-- End Date -->
+        <div>
+            <label for="{{ form.end_date.id_for_label }}">End Date:</label>
+            {{ form.end_date }}
+        </div>
+
+        <!-- Status -->
+        <div>
+            <label for="{{ form.status.id_for_label }}">Status:</label>
+            {{ form.status }}
+        </div>
+
+        <!-- Documentation -->
+        <div>
+            <label for="{{ form.documentation.id_for_label }}">Documentation:</label>
+            {{ form.documentation }}
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+            <button type="submit">Create Project</button>
+        </div>
+    </form>
+</body>
+</html>

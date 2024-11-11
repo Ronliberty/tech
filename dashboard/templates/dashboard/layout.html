@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div>
+          <ul class="navbar-nav">
+            <span class="navbar-text">Logged in as {{user.username}} | </span>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link" href="{% url 'services:service-list' %}">service</a>
+
+            </li>
+               <li class="nav-item">
+              <a class="nav-link" href="{% url 'services:service-create' %}">create service</a>
+                    <a class="nav-link" href="{% url 'project:project-create' %}">project</a>
+                    <a class="nav-link" href="{% url 'project:project_ongoing' %}">update</a>
+                   <a class="nav-link" href="{% url 'hire:expert-request-list' %}">list</a>
+                   <a class="nav-link" href="{% url 'meetings:meeting_requests_list' %}">list</a>
+                   <a class="nav-link" href="{% url 'hire:experts-create' %}">create an expert</a>
+{% url 'hire:experts-create' %}
+            </li>
+
+          </ul>
+        </div>
+ <div class="container">{% block content %} {% endblock %}</div>
+</body>
+</html>

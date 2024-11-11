@@ -1,0 +1,16 @@
+
+<h1>Meeting Feedback</h1>
+
+<p><strong>Subject:</strong> {{ meeting.subject }}</p>
+<p><strong>Description:</strong> {{ meeting.description }}</p>
+<p><strong>Request Date:</strong> {{ meeting.request_date }}</p>
+
+{% if meeting.status == "Approved" %}
+    <p><strong>Feedback URL:</strong> <a href="{{ meeting.feedback_url }}" target="_blank">{{ meeting.feedback_url }}</a></p>
+    <p><strong>Meeting Time:</strong> {{ meeting.meeting_time }}</p>
+    <p><strong>Status:</strong> {{ meeting.status }}</p>
+{% else %}
+    <p>No feedback provided yet.</p>
+{% endif %}
+
+<a href="#">Back to Meeting Requests</a>

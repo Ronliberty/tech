@@ -1,0 +1,26 @@
+<!-- templates/meetings/meeting_requests_list.html -->
+<h1>Meeting Requests</h1>
+<table>
+    <tr>
+        <th>Subject</th>
+        <th>Description</th>
+        <th>Request Date</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    {% for meeting in meeting_requests %}
+    <tr>
+        <td>{{ meeting.subject }}</td>
+        <td>{{ meeting.description }}</td>
+        <td>{{ meeting.request_date }}</td>
+        <td>{{ meeting.status }}</td>
+        <td>
+
+                <!-- Link to provide feedback if feedback hasn't been provided yet -->
+                <a href="{% url 'meetings:provide_feedback' meeting.id %}">Provide Feedback</a>
+
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>

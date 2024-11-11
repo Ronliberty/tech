@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Requests</title>
+</head>
+<body>
+    <h1>Expert Requests</h1>
+
+    {% if expert_requests %}
+        <ul>
+            {% for request in expert_requests %}
+                <li>
+                    <strong>{{ request.requested_by.username }}</strong> requested expert <strong>{{ request.expert.name }}</strong><br>
+                    <p><strong>Additional Details:</strong> {{ request.additional_details }}</p>
+                    <p><em>Requested on: {{ request.requested_at }}</em></p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No expert requests found.</p>
+    {% endif %}
+</body>
+</html>

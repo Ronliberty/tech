@@ -1,0 +1,91 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+
+<style>
+    <style>
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes colorChange {
+    0% { color: blue; }
+    50% { color: red; }
+    100% { color: blue; }
+  }
+</style>
+</style>
+
+<h1 style="animation: fadeIn 2s ease-in-out;">Welcome <span style="color: Blue; animation: colorChange 3s ease-in-out infinite;"> {{user.username}}</span>!</h1>
+ <div id="services-list-container">
+
+        <!-- Service list will be dynamically loaded here -->
+    </div>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <button id="load-services-btn" style="background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-right: 20px; margin-left: 20px; margin-top: 20px; transition: background-color 0.3s;">View our Services</button>
+    <button id="open-booking-form-btn" style="background-color: #008CBA; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 20px; transition: background-color 0.3s;">Book our Services</button>
+</div>
+
+<!-- Modal for booking form -->
+<div id="booking-form-modal" style="display: none;">
+    <div id="booking-form-container">
+        <!-- Booking form will be dynamically loaded here -->
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#load-services-btn').on('click', function() {
+            $.ajax({
+                url: '{% url "services:service-list" %}',
+                method: 'GET',
+                success: function(response) {
+                    // Inject the received data into the service list container
+                    $('#services-list-container').html(response.html);  // Access response.html if you’re using JsonResponse
+                },
+                error: function(xhr, status, error) {
+                    alert('Error loading services: ' + error);
+                }
+            });
+        });
+        $('#open-booking-form-btn').on('click', function() {
+            $.ajax({
+                url: '{% url "services:request-service" %}',
+                method: 'GET',
+                data: $(this).serialize(),
+                headers: { 'X-CSRFToken': '{{ csrf_token }}' },
+                success: function(response) {
+                    $('#booking-form-container').html(response);  // Inject form HTML
+                    $('#booking-form-modal').show();  // Show modal
+                },
+                error: function(xhr, status, error) {
+                    alert('Error loading booking form: ' + error);
+                }
+            });
+        });
+
+        // Submit Booking Form via AJAX
+        $(document).on('submit', '#service-request-form', function(e) {
+            e.preventDefault();  // Prevent form's default submission
+
+            $.ajax({
+                url: $(this).attr('action'),
+                method: $(this).attr('method'),
+                data: $(this).serialize(),
+                success: function(response) {
+                    alert(response.message);  // Show success message
+                    $('#booking-form-modal').hide();  // Hide the modal
+                    $('#booking-form-container').html('');  // Clear the form
+                },
+                error: function(xhr) {
+                    // Inject any errors back into the form
+                    $('#booking-form-container').html(xhr.responseJSON.errors);
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}
+

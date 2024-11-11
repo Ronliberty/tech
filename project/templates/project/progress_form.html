@@ -1,0 +1,45 @@
+
+
+{% block content %}
+  <h1>Update Progress for Project: {{ object.project.title }}</h1>
+
+  <!-- Display form for updating progress -->
+  <form method="post">
+    {% csrf_token %}
+
+    <!-- Render form fields -->
+    <div>
+      <label for="{{ form.status_update.id_for_label }}">Status Update:</label>
+      {{ form.status_update }}
+    </div>
+
+    <div>
+      <label for="{{ form.progress_percentage.id_for_label }}">Progress Percentage:</label>
+      {{ form.progress_percentage }}
+    </div>
+
+    <div>
+      <label for="{{ form.description.id_for_label }}">Description (Optional):</label>
+      {{ form.description }}
+    </div>
+
+    <!-- Submit Button -->
+    <div>
+      <button type="submit">Update Progress</button>
+    </div>
+  </form>
+
+  <!-- Display error messages if form is not valid -->
+  {% if form.errors %}
+    <div class="error">
+      <ul>
+        {% for field in form %}
+          {% for error in field.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+{% endblock %}

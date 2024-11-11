@@ -1,0 +1,52 @@
+<!-- project_detail.html -->
+
+
+{% block content %}
+<div class="project-detail-container" style="width: 80%; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333;">
+
+    <h1 style="font-size: 2em; color: #0056b3; text-align: center; margin-bottom: 20px;">{{ project.name }}</h1>
+    <p style="font-size: 1.2em; line-height: 1.6;"><strong>Description:</strong> {{ project.description }}</p>
+    <p style="font-size: 1.2em; line-height: 1.6;"><strong>Start Date:</strong> {{ project.start_date }}</p>
+    <p style="font-size: 1.2em; line-height: 1.6;"><strong>End Date:</strong> {{ project.end_date }}</p>
+    <p style="font-size: 1.2em; line-height: 1.6;"><strong>Status:</strong> {{ project.status }}</p>
+    <p style="font-size: 1.2em; line-height: 1.6;"><strong>Created by:</strong> {{ project.user.username }}</p>
+
+    <button onclick="goBack()">Back</button>
+</div>
+
+<!-- Inline script to handle the "Back" button function -->
+<script type="text/javascript">
+    function goBack() {
+        window.history.back();  // This will take the user to the previous page
+    }
+</script>
+<style>
+    @media (max-width: 600px) {
+        .project-detail-container h1 {
+            font-size: 1.8em;
+        }
+        .project-detail-container p {
+            font-size: 1em;
+        }
+        .project-detail-container button {
+            font-size: 1.5em;
+            padding: 8px 0;
+        }
+    }
+    @media (max-width: 768px) {
+        .project-detail-container {
+            padding: 15px;
+        }
+        .project-detail-container h1 {
+            font-size: 1.8em;
+        }
+        .project-detail-container p {
+            font-size: 1.1em;
+        }
+        .project-detail-container button {
+            font-size: 1.1em;
+            padding: 8px 0;
+        }
+    }
+</style>
+{% endblock %}
